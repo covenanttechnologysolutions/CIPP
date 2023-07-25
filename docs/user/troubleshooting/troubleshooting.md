@@ -68,14 +68,26 @@ Multiple Potential Causes:
 3. DAP: If the client is using DAP. The user might not be in the AdminAgents group.
 4. GDAP: if you are using GDAP and have not added the user to the correct group(s) for CIPP to function.
 
-### _AADSTS50020_ or The user you have used for your Secure Application Model is a guest in this tenant, or your are using GDAP and have not added the user to the correct group. Please delete the guest user to gain access to this tenant.
+### AADSTS50020 or AADSTS50177
 
-1. The user has not authorized the CIPP-SAM Application. Use the Settings -> Tenants -> Refresh button to refresh the permissions.
-2. The user that was used for the CIPP Authorisation is a guest in this tenant
-3. The user might not be in the AdminAgents group.
-4. GDAP: if you are using GDAP and have not added the user to the correct group(s) for CIPP to function.
+Multiple Potential Causes:
+
+* The user has not authorized the CIPP-SAM Application. Use the Settings -> Tenants -> Refresh button to refresh the permissions.
+* The user that was used for the CIPP Authorization is a guest in this tenant
+* The user might not be in the AdminAgents group.
+* GDAP: if you are using GDAP and have not added the user to the correct group(s) for CIPP to function.
+
+{% hint style="info" %}
+**These errors may also present themselves something like the below. The steps above are still accurate in these cases:**&#x20;
+
+* The user you have used for your Secure Application Model is a guest in this tenant, or your are using GDAP and have not added the user to the correct group. Please delete the guest user to gain access to this tenant.
+* User account from identity provider does not exist in tenant and cannot access the application in that tenant. The account needs to be added as an external user in the tenant first. Sign out and sign in again with a different Azure Active Directory user account.
+{% endhint %}
 
 ### _invalid or malformed_
+
+* The user might not be in the AdminAgents group.
+* GDAP: if you are using GDAP and have not added the user to the correct group(s) for CIPP to function.
 
 The request is malformed. the body does not contain JSON or variables have not expanded. Look for typos such as incorrect bracket usage
 
@@ -120,7 +132,7 @@ The refresh token could not be retrieved and stored. The user must reauthorize.
 
 ### The property 'LastGraphError' cannot be found on this object
 
-This error occurs when CIPP cannot write to the errors table - Clear your tenant cache from the settings menu and try again.
+This error occurs when CIPP cannot write to the errors table - Clear your tenant cache from the settings menu and try again. You might also receive the error when a tenant access check has failed, the only way to clear the Last Graph Error is by removing the tenant cache.
 
 ### AADSTS7000222: The provided client secret keys for app {appid} are expired.
 
